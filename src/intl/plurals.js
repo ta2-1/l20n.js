@@ -446,6 +446,56 @@ const pluralRules = {
   }
 };
 
+const pluralForms = {
+  '0': ['other'],
+  '1': ['zero', 'one', 'two', 'few', 'many', 'other'],
+  '2': ['one', 'two', 'many', 'other'],
+  '3': ['one', 'other'],
+  '4': ['zero', 'one', 'other'],
+  '5': ['one', 'two', 'other'],
+  '6': ['one', 'two', 'few', 'many', 'other'],
+  '7': ['one', 'few', 'other'],
+  '8': ['one', 'few', 'many', 'other'],
+  '9': ['one', 'two', 'few', 'other'],
+}
+
+const pluralFormRules = {
+  '0': '0',
+  '1': '1',
+  '2': '2',
+  '3': '3',
+  '4': '3',
+  '5': '3',
+  '6': '4',
+  '7': '5',
+  '8': '6',
+  '9': '7',
+  '10': '7',
+  '11': '8',
+  '12': '7',
+  '13': '8',
+  '14': '6',
+  '15': '8',
+  '16': '3',
+  '17': '1',
+  '18': '4',
+  '19': '7',
+  '20': '6',
+  '21': '4',
+  '22': '3',
+  '23': '3',
+  '24': '9',
+};
+
+export function getPluralForms(localeCode) {
+  const index = locales2rules[localeCode.replace(/-.*$/, '')];
+
+  if (!(index in pluralFormRules)) {
+    return ['other'];
+  }
+  return pluralForms[pluralFormRules[index]];
+}
+
 export function getPluralRule(code) {
   // return a function that gives the plural form name for a given integer
   const index = locales2rules[code.replace(/-.*$/, '')];
