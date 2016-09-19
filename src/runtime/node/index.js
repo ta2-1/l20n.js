@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import '../../intl/polyfill';
 
 export { default as FTLASTSerializer } from '../../ftl/ast/serializer';
